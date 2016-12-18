@@ -1,12 +1,12 @@
 package com.volkhart.lyrics;
 
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -16,7 +16,7 @@ import timber.log.Timber;
 public final class SongSummaryAdapter extends RecyclerView.Adapter<SongSummaryAdapter.SummaryHolder> {
 
     private final OnSongClickListener clickListener;
-    private List<Song> songs = Collections.emptyList();
+    private SortedList<Song> list = new SortedList<>(Song.class, new SongSortedListCallback(this));
 
     public SongSummaryAdapter(OnSongClickListener clickListener) {
         this.clickListener = clickListener;
@@ -32,18 +32,20 @@ public final class SongSummaryAdapter extends RecyclerView.Adapter<SongSummaryAd
     @Override
     public void onBindViewHolder(SongSummaryAdapter.SummaryHolder holder, int position) {
         Timber.v("Rendering position %d", position);
-        Song song = songs.get(position);
+        Song song = list.get(position);
         holder.songName.setText(song.name());
     }
 
     @Override
     public int getItemCount() {
-        return songs.size();
+        return list.size();
     }
 
     public void setSongs(List<Song> songs) {
-        this.songs = songs;
-        notifyDataSetChanged();
+        list.beginBatchedUpdates();
+        list.clear();
+        list.addAll(songs);
+        list.endBatchedUpdates();
         Timber.v("Got new songs");
     }
 
@@ -59,7 +61,7 @@ public final class SongSummaryAdapter extends RecyclerView.Adapter<SongSummaryAd
         public SummaryHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(view -> clickListener.onSongClick(songs.get(getAdapterPosition())));
+            itemView.setOnClickListener(view -> clickListener.onSongClick(list.get(getAdapterPosition())));
         }
     }
 }
