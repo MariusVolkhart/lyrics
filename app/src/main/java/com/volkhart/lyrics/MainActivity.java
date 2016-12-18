@@ -13,7 +13,7 @@ public final class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Timber.plant(new Timber.DebugTree());
         FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() == 0) {
+        if (fragmentManager.findFragmentByTag(SongIndexFragment.TAG) == null) {
             fragmentManager.beginTransaction()
                     .add(android.R.id.content, SongIndexFragment.newInstance(), SongIndexFragment.TAG)
                     .commit();
