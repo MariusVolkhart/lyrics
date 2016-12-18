@@ -12,14 +12,16 @@ public final class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.findFragmentByTag(SongIndexFragment.TAG) == null) {
-            if (BuildConfig.DEBUG) {
-                Timber.plant(new Timber.DebugTree());
-            }
-            fragmentManager.beginTransaction()
-                    .add(android.R.id.content, SongIndexFragment.newInstance(), SongIndexFragment.TAG)
-                    .commit();
+        if (fragmentManager.findFragmentByTag(SongIndexFragment.TAG) != null) {
+            return;
         }
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
+        fragmentManager.beginTransaction()
+                .add(android.R.id.content, SongIndexFragment.newInstance(), SongIndexFragment.TAG)
+                .commit();
     }
 
     public void showSong(Song song) {
