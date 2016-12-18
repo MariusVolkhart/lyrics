@@ -17,6 +17,8 @@ public final class SongFragment extends Fragment {
 
     @BindView(R.id.songText)
     TextView songText;
+    @BindView(R.id.chords)
+    TextView chords;
 
     public static SongFragment newInstance(Song song) {
         SongFragment fragment = new SongFragment();
@@ -33,6 +35,8 @@ public final class SongFragment extends Fragment {
         ButterKnife.bind(this, root);
         Song song = getArguments().getParcelable(ARG_SONG);
         songText.setText(song.lyrics());
+        chords.setVisibility(song.chords() == null ? View.GONE : View.VISIBLE);
+        chords.setText(song.chords());
         return root;
     }
 }

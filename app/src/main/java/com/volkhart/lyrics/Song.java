@@ -1,6 +1,7 @@
 package com.volkhart.lyrics;
 
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.JsonAdapter;
@@ -18,4 +19,7 @@ public abstract class Song implements Parcelable {
     public abstract String language();
 
     public abstract String lyrics();
+
+    @Nullable
+    public abstract String chords();
 }
