@@ -12,6 +12,7 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -28,6 +29,7 @@ import timber.log.Timber;
 public final class SongIndexFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<Song>>, SongSummaryAdapter.OnSongClickListener {
     public static final String TAG = SongIndexFragment.class.getSimpleName();
     private static final int LOADER_SONGS = 0;
+    private static final String STATE_QUERY = "query";
     private static final Moshi moshi = new Moshi.Builder()
             .add(LyricsAdapterFactory.create())
             .build();
@@ -37,6 +39,7 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
 
     private SongSummaryAdapter adapter;
     private List<Song> songs;
+    private String query;
 
     public static SongIndexFragment newInstance() {
         return new SongIndexFragment();
@@ -53,6 +56,11 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
         list.setHasFixedSize(true);
         adapter = new SongSummaryAdapter(this);
         list.setAdapter(adapter);
+
+        if (savedInstanceState != null) {
+            query = savedInstanceState.getString(STATE_QUERY, null);
+        }
+
         return root;
     }
 
@@ -66,7 +74,8 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.song_index, menu);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -78,12 +87,25 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
                 if (newText.isEmpty() && adapter.getItemCount() == songs.size()) {
                     return false;
                 }
+                query = newText;
                 List<Song> filteredModelList = filter(songs, newText);
                 adapter.setSongs(filteredModelList);
                 list.scrollToPosition(0);
                 return true;
             }
         });
+
+        // Restore the query if one was in progress
+        if (query != null) {
+            searchMenuItem.expandActionView();
+            searchView.setQuery(query, true);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(STATE_QUERY, query);
     }
 
     @Override
