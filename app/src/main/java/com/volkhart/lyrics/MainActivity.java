@@ -11,9 +11,11 @@ public final class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Timber.plant(new Timber.DebugTree());
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.findFragmentByTag(SongIndexFragment.TAG) == null) {
+            if (BuildConfig.DEBUG) {
+                Timber.plant(new Timber.DebugTree());
+            }
             fragmentManager.beginTransaction()
                     .add(android.R.id.content, SongIndexFragment.newInstance(), SongIndexFragment.TAG)
                     .commit();
