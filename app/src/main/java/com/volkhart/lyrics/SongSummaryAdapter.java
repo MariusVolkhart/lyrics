@@ -46,7 +46,7 @@ public final class SongSummaryAdapter extends RecyclerView.Adapter<SongSummaryAd
         list.clear();
         list.addAll(songs);
         list.endBatchedUpdates();
-        Timber.v("Got new songs");
+        Timber.d("Got new songs");
     }
 
     public interface OnSongClickListener {

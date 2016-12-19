@@ -59,6 +59,7 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
 
         if (savedInstanceState != null) {
             query = savedInstanceState.getString(STATE_QUERY, null);
+            Timber.d("Restoring query: %s", query);
         }
 
         return root;
@@ -96,7 +97,7 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
         });
 
         // Restore the query if one was in progress
-        if (query != null) {
+        if (query != null && !query.isEmpty()) {
             searchMenuItem.expandActionView();
             searchView.setQuery(query, true);
         }
@@ -133,6 +134,7 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
 
     @Override
     public void onSongClick(Song song) {
+        Timber.d("Showing song %s", song.name());
         ((MainActivity) getActivity()).showSong(song);
     }
 
