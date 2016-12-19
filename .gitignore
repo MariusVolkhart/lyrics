@@ -28,3 +28,9 @@ local.properties
 # Mac Files
 #
 .DS_Store
+
+
+####
+# Signing information
+#
+keystore.properties
