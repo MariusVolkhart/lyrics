@@ -34,3 +34,4 @@ local.properties
 # Signing information
 #
 keystore.properties
+keys.json
