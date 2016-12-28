@@ -36,6 +36,7 @@
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textIsSelectable="true"
             tools:text="Ahoi, Kamaraden, ahoi, ahoi.\nLeb wohl, kleines Mädel,\nleb wohl, leb wohl.\nJa wenn das Schifferklavier an Bord erklingt,\nja dann sind die Matrosen so still,\nja so still\nweil ein jeder nach seiner Heimat sich sehnt,\ndie er gerne einmal wiedersehen will." />
     </ScrollView>
 </LinearLayout>
