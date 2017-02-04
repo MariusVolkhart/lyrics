@@ -34,7 +34,8 @@ public final class FeedbackMenuFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_feedback:
-                Listener listener = new MaoniEmailListener(getActivity(), "text/plain", "subject", "body header", "body footer", new String[]{"toAddress"}, null, null);
+                String subject = getString(R.string.feedback_subject);
+                Listener listener = new MaoniEmailListener(getActivity(), "text/plain", subject, null, null, new String[]{"marius@volkhart.com"}, null, null);
                 String authority = BuildConfig.APPLICATION_ID + ".feedback";
                 new Feedback.Builder(authority, listener)
                         .build()
