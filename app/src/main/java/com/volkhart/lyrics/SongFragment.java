@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public final class SongFragment extends Fragment {
     public static final String TAG = SongFragment.class.getSimpleName();
@@ -35,6 +36,7 @@ public final class SongFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_song, container, false);
         ButterKnife.bind(this, root);
         Song song = getArguments().getParcelable(ARG_SONG);
+        Timber.i("Viewing song %s", song.name());
         songText.setText(song.lyrics());
         chords.setVisibility(song.chords() == null ? View.GONE : View.VISIBLE);
         chords.setText(song.chords());
