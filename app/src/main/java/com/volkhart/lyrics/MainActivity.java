@@ -3,8 +3,6 @@ package com.volkhart.lyrics;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import timber.log.Timber;
-
 public final class MainActivity extends AppCompatActivity {
 
     private boolean showMasterDetail;
@@ -15,9 +13,6 @@ public final class MainActivity extends AppCompatActivity {
         showMasterDetail = getResources().getBoolean(R.bool.showMasterDetail);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            if (BuildConfig.DEBUG) {
-                Timber.plant(new Timber.DebugTree());
-            }
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.master, SongIndexFragment.newInstance(), SongIndexFragment.TAG)
                     .add(FeedbackMenuFragment.newInstance(), FeedbackMenuFragment.TAG)
