@@ -20,6 +20,7 @@ public final class MainActivity extends AppCompatActivity {
             }
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.master, SongIndexFragment.newInstance(), SongIndexFragment.TAG)
+                    .add(FeedbackMenuFragment.newInstance(), FeedbackMenuFragment.TAG)
                     .commit();
         }
     }

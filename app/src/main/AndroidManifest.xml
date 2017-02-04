@@ -16,6 +16,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".SongDetailsActivity" />
+
+        <provider
+            android:name="com.volkhart.feedback.FeedbackFileProvider"
+            android:authorities="${applicationId}.feedback"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/feedback_filepaths" />
+        </provider>
     </application>
 
 </manifest>
