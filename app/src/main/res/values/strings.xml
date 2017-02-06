@@ -1,5 +1,4 @@
 <resources>
     <string name="action_search">Search</string>
-    <string name="action_feedback">Feedback</string>
     <string name="feedback_subject">Song Barrel Feedback</string>
 </resources>

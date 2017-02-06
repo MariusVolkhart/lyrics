@@ -2,7 +2,7 @@ package com.volkhart.lyrics;
 
 import android.app.Application;
 
-import com.volkhart.feedback.utils.FeedbackTree;
+import com.volkhart.feedback.FeedbackTree;
 
 import timber.log.Timber;
 

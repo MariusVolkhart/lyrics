@@ -23,7 +23,7 @@ public class SongDetailsActivity extends AppCompatActivity {
             setTitle(song.name());
             getSupportFragmentManager().beginTransaction()
                     .add(android.R.id.content, SongFragment.newInstance(song), SongFragment.TAG)
-                    .add(FeedbackMenuFragment.newInstance(), FeedbackMenuFragment.TAG)
+                    .add(FeedbackFragment.newInstance(), FeedbackFragment.TAG)
                     .commit();
         }
     }

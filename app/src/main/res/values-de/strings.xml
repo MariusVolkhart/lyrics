@@ -2,6 +2,5 @@
 <resources>
     <string name="app_name">Lieder Fass</string>
     <string name="action_search">Suchen</string>
-    <string name="action_feedback">Feedback</string>
     <string name="feedback_subject">Lieder Fass Feedback</string>
 </resources>
