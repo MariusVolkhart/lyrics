@@ -22,7 +22,7 @@ public final class FeedbackFragment extends com.volkhart.feedback.FeedbackFragme
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String subject = getString(R.string.feedback_subject);
-        listener = new MaoniEmailListener(getActivity(), "text/plain", subject, null, null, new String[]{"marius@volkhart.com"}, null, null);
+        listener = new MaoniEmailListener(getActivity(), "text/plain", subject, null, null, new String[]{"marius+lyrics@volkhart.com"}, null, null);
     }
 
     @Override
