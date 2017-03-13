@@ -17,7 +17,6 @@
 #}
 -printusage unused.txt
 -dontobfuscate
--dontoptimize
 
 ## Retrolambda
 -dontwarn java.lang.invoke.*
