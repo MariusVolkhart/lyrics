@@ -70,9 +70,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.squareup.moshi:moshi:1.4.0'
     annotationProcessor 'com.ryanharter.auto.value:auto-value-moshi:0.4.3'
     provided 'com.ryanharter.auto.value:auto-value-moshi-annotations:0.4.3'
