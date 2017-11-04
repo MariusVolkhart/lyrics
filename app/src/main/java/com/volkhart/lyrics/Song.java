@@ -16,8 +16,6 @@ public abstract class Song implements Parcelable {
 
     public abstract String name();
 
-    public abstract String language();
-
     public abstract String lyrics();
 
     @Nullable

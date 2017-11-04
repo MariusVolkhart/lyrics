@@ -3,6 +3,8 @@ package com.volkhart.lyrics;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.volkhart.keyboardshortcuts.KeyboardShortcutsFragment;
+
 public final class MainActivity extends AppCompatActivity {
 
     private boolean showMasterDetail;
@@ -16,6 +18,7 @@ public final class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.master, SongIndexFragment.newInstance(), SongIndexFragment.TAG)
                     .add(FeedbackFragment.newInstance(), FeedbackFragment.TAG)
+                    .add(KeyboardShortcutsFragment.newInstance(), KeyboardShortcutsFragment.TAG)
                     .commit();
         }
     }

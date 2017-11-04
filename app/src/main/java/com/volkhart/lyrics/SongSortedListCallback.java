@@ -7,7 +7,7 @@ public final class SongSortedListCallback extends SortedList.Callback<Song> {
 
     private final RecyclerView.Adapter<SongSummaryAdapter.SummaryHolder> adapter;
 
-    public SongSortedListCallback(RecyclerView.Adapter<SongSummaryAdapter.SummaryHolder> adapter) {
+    SongSortedListCallback(RecyclerView.Adapter<SongSummaryAdapter.SummaryHolder> adapter) {
         this.adapter = adapter;
     }
 

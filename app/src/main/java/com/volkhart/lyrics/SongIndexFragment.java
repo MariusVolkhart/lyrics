@@ -45,10 +45,8 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
         return new SongIndexFragment();
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Timber.v("onCreateView");
         setHasOptionsMenu(true);
         View root = inflater.inflate(R.layout.fragment_song_index, container, false);
         ButterKnife.bind(this, root);
@@ -67,7 +65,6 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        Timber.v("onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         getLoaderManager().initLoader(LOADER_SONGS, null, this);
     }
@@ -125,6 +122,7 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
         Timber.v("onLoadFinished. Got the songs.");
         adapter.setSongs(data);
         songs = data;
+        getLoaderManager().destroyLoader(LOADER_SONGS);
     }
 
     @Override

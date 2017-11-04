@@ -5,7 +5,6 @@ buildscript {
     }
 
     dependencies {
-        // ...
         classpath 'com.github.triplet.gradle:play-publisher:1.1.5'
     }
 }
@@ -18,12 +17,12 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.volkhart.lyrics"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 17
+        targetSdkVersion 26
         versionCode 4
         versionName "1.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -67,19 +66,20 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.squareup.moshi:moshi:1.4.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.squareup.moshi:moshi:1.5.0'
     annotationProcessor 'com.ryanharter.auto.value:auto-value-moshi:0.4.3'
     provided 'com.ryanharter.auto.value:auto-value-moshi-annotations:0.4.3'
     annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
-    provided 'com.google.auto.value:auto-value:1.4'
-    annotationProcessor 'com.google.auto.value:auto-value:1.4'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'com.jakewharton.timber:timber:4.5.1'
-    compile 'com.volkhart.feedback:feedback:1.0.0-rc1'
+    provided 'com.google.auto.value:auto-value:1.5.1'
+    annotationProcessor 'com.google.auto.value:auto-value:1.5.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.jakewharton.timber:timber:4.6.0'
+    compile 'com.volkhart.feedback:feedback:1.0.0-rc2'
     compile 'org.rm3l:maoni-email:2.3.1'
+    compile 'com.volkhart.keyboardshortcuts:keyboardshortcuts:1.0.0-SNAPSHOT'
     testCompile 'junit:junit:4.12'
 }
