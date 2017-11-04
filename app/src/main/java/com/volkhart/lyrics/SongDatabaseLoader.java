@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.support.v4.content.AsyncTaskLoader;
 
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,19 +14,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
-import okio.BufferedSource;
-import okio.Okio;
 import timber.log.Timber;
 
 public final class SongDatabaseLoader extends AsyncTaskLoader<List<Song>> {
 
-    private final AssetManager assets;
-    private final Moshi moshi;
-
-    SongDatabaseLoader(Context context, Moshi moshi) {
+    SongDatabaseLoader(Context context) {
         super(context);
-        assets = context.getAssets();
-        this.moshi = moshi;
         onContentChanged();
     }
 
@@ -46,6 +37,7 @@ public final class SongDatabaseLoader extends AsyncTaskLoader<List<Song>> {
 
     @Override
     public List<Song> loadInBackground() {
+        AssetManager assets = getContext().getAssets();
         String[] jsonAssets;
         try {
             jsonAssets = assets.list("songs");
@@ -60,15 +52,13 @@ public final class SongDatabaseLoader extends AsyncTaskLoader<List<Song>> {
         int threadCount = Runtime.getRuntime().availableProcessors();
         ThreadFactory threadFactory = runnable -> new Thread(runnable, "SongLoadThread");
         ExecutorService executor = Executors.newFixedThreadPool(threadCount, threadFactory);
-        JsonAdapter<Song> songAdapter = moshi.adapter(Song.class);
 
         // Execute in parallel
         try {
             for (String jsonAsset : jsonAssets) {
                 executor.submit(() -> {
-                    try {
-                        BufferedSource json = Okio.buffer(Okio.source(assets.open("songs/" + jsonAsset)));
-                        Song song = songAdapter.fromJson(json);
+                    try (InputStream json = assets.open("songs/" + jsonAsset)) {
+                        Song song = Song.fromJson(json);
                         songs.add(song);
                         Timber.v("Parsed %s", jsonAsset);
                     } catch (IOException e) {

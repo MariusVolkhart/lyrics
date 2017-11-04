@@ -16,8 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.moshi.Moshi;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -30,9 +28,6 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
     public static final String TAG = SongIndexFragment.class.getSimpleName();
     private static final int LOADER_SONGS = 0;
     private static final String STATE_QUERY = "query";
-    private static final Moshi moshi = new Moshi.Builder()
-            .add(LyricsAdapterFactory.create())
-            .build();
 
     @BindView(R.id.list)
     RecyclerView list;
@@ -111,7 +106,7 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
         switch (id) {
             case LOADER_SONGS:
                 Timber.v("Creating song loader");
-                return new SongDatabaseLoader(getContext(), moshi);
+                return new SongDatabaseLoader(getContext());
             default:
                 throw new IllegalArgumentException("Loader id " + id + " is not supported");
         }
@@ -122,7 +117,6 @@ public final class SongIndexFragment extends Fragment implements LoaderManager.L
         Timber.v("onLoadFinished. Got the songs.");
         adapter.setSongs(data);
         songs = data;
-        getLoaderManager().destroyLoader(LOADER_SONGS);
     }
 
     @Override

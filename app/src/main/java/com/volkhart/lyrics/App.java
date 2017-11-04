@@ -1,7 +1,6 @@
 package com.volkhart.lyrics;
 
 import android.app.Application;
-import android.os.StrictMode;
 
 import com.volkhart.feedback.FeedbackTree;
 
@@ -17,19 +16,19 @@ public final class App extends Application {
             Timber.plant(new Timber.DebugTree());
         }
 
-        if (BuildConfig.DEBUG) {
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .penaltyDeath()
-                    .build());
-
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .penaltyFlashScreen()
-                    .penaltyDeath()
-                    .build());
-        }
+//        if (BuildConfig.DEBUG) {
+//            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//                    .detectAll()
+//                    .penaltyLog()
+//                    .penaltyDeath()
+//                    .build());
+//
+//            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//                    .detectAll()
+//                    .penaltyLog()
+//                    .penaltyFlashScreen()
+//                    .penaltyDeath()
+//                    .build());
+//        }
     }
 }

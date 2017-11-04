@@ -15,14 +15,11 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--printusage unused.txt
 -dontobfuscate
 
-## Retrolambda
--dontwarn java.lang.invoke.*
+-optimizations !code/allocation/variable
 
-## Okio
--dontwarn okio.**
+-dontwarn me.panavtec.drawableview.gestures.DrawerDelegate
 
 ##
 # General Android
@@ -49,5 +46,3 @@
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
-
--dontwarn me.panavtec.drawableview.gestures.DrawerDelegate
